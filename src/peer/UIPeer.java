@@ -23,9 +23,10 @@ public class UIPeer
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String[] args)
     {
-        File file = new File("/Users/giuliagiuffrida/NetBeansProjects/1HW_PeerContoCointestato-master/src/peer1hw/port");
+        File file = new File("/Users/giuliagiuffrida/NetBeansProjects/PeerNewsletter/src/peer/port");
         int myPort = 0;
         
         if (args.length < 1)

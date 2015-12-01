@@ -6,7 +6,7 @@ import static peer.Peer.peersAreEqual;
 
 /**
  *
- * @author Damiano Di Stefano, Marco Giuseppe Salafia
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 public class Recorder
 {
