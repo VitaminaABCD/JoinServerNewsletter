@@ -57,13 +57,13 @@ public class ClientHandler implements Runnable
             switch(choice)
             {
                 case 1:
-                   
+                   //readNews();
                     break;
                 case 2:
-                    
+                    //writeDato();
                     break;
                 case 3:
-                    printTotal();
+                    printNews();
                     break;
                 case 4:
                     takeGlobalSnapshot();
@@ -83,9 +83,9 @@ public class ClientHandler implements Runnable
     public void printMenu()
     {
         System.out.println("--------------MENU--------------");
-        System.out.println("\n\t1)");
-        System.out.println("\t2) ");
-        System.out.println("\t3) Stampa il saldo attuale");
+        System.out.println("\n\t1) ");
+        System.out.println("\t2) Scrivi dato");
+        System.out.println("\t3) Stampa le notizie");
         System.out.println("\t4) Global Snapshot");
         System.out.println("\t5) Stampa Log");
         System.out.println("\t6) Stampa Peer Vicini\n");
@@ -135,16 +135,17 @@ public class ClientHandler implements Runnable
         Logger.getLogger(Peer.class.getName()).log(Level.INFO, record);
     }
     
-    private double getAmount()
+*/
+        private String getDato()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("> Amount: ");
-        return scanner.nextDouble();
-    }*/
+        System.out.println("> Dato: ");
+        return scanner.next();
+    }
 
-    private void printTotal()
+    private void printNews()
     {
-        System.out.println("> DATO DISPONIBILE : " + news.getTotal());
+        System.out.println("> ECCO I DATI : " + news.getNews());
     }
 
     private void takeGlobalSnapshot()
