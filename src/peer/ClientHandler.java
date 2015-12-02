@@ -57,21 +57,18 @@ public class ClientHandler implements Runnable
             switch(choice)
             {
                 case 1:
-                   //readNews();
-                    break;
-                case 2:
-                    //writeDato();
-                    break;
-                case 3:
                     printNews();
                     break;
-                case 4:
+                case 2:
+                    writeNews();
+                    break;
+                case 3:
                     takeGlobalSnapshot();
                     break;
-                case 5:
+                case 4:
                     printLog();
                     break;
-                case 6:
+                case 5:
                     printNeighbours();
                     break;
                 default:
@@ -83,69 +80,38 @@ public class ClientHandler implements Runnable
     public void printMenu()
     {
         System.out.println("--------------MENU--------------");
-        System.out.println("\n\t1) ");
-        System.out.println("\t2) Scrivi dato");
-        System.out.println("\t3) Stampa le notizie");
-        System.out.println("\t4) Global Snapshot");
-        System.out.println("\t5) Stampa Log");
-        System.out.println("\t6) Stampa Peer Vicini\n");
+        System.out.println("\n\t1) Leggi News");
+        System.out.println("\t2) Scrivi News");
+        System.out.println("\t3) Global Snapshot");
+        System.out.println("\t4) Stampa Log");
+        System.out.println("\t5) Stampa Peer Vicini\n");
         System.out.println("--------------------------------");
         System.out.println("\nInserisci il comando:");
     }
 
     
-    /*Si deve sincronizzare sull'Hashset dei vicini
-    private void causalOrderMulticast(OperationMessage.OperationType operationType,
-                                      double amount)
-    {
-        
-        myVectorClock.updateVectorClock();
-        for(InetSocketAddress receiver: myNeighbours)
-        {
-            Message m = new OperationMessage(myInetSocketAddress, 
-                                             receiver, 
-                                             myVectorClock, 
-                                             operationType, 
-                                             amount);
-            Forwarder.sendMessage(m);
-        }
-        
-    }
+    //Si deve sincronizzare sull'Hashset dei vicini
     
-    private void deposit()
-   
-        double amount = getAmount();
-        causalOrderMulticast(OperationMessage.OperationType.DEPOSIT, amount);
-        conto.deposit(myInetSocketAddress, amount);
-        String record = "[PEER: " + myInetSocketAddress +
-                         " deposita " + amount + "]";
-        //Logger.getLogger(Peer.class.getName()).log(Level.INFO, record);
+    private void writeNews(){
+    String dato = getDato();
+    news.write(myInetSocketAddress, dato);
+    String record = "[PEER: " + myInetSocketAddress +
+                         " scrive " + dato + 
+                    "TimeStamp:" +myTimeStamp+ "]";
         logger.log(Level.INFO, record);
-    }
     
-    private void withdraw()
-    {
-        //Possiamo avere saldo negativo.
-        //Non c'è controllo sul quantitativo che possiamo prelevare;
-        double amount = getAmount();
-        causalOrderMulticast(OperationMessage.OperationType.WITHDRAW, amount);
-        conto.withdraw(myInetSocketAddress, amount);
-        String record = "[PEER: " + myInetSocketAddress +
-                         " preleva " + amount + "]";
-        Logger.getLogger(Peer.class.getName()).log(Level.INFO, record);
     }
-    
-*/
-        private String getDato()
+
+    private String getDato()
     {
         Scanner scanner = new Scanner(System.in);
         System.out.println("> Dato: ");
         return scanner.next();
     }
-
+            
     private void printNews()
     {
-        System.out.println("> ECCO I DATI : " + news.getNews());
+        System.out.println("> NEWS DISPONIBILI : " + news.getNews()+"TimeStamp:"+myTimeStamp);
     }
 
     private void takeGlobalSnapshot()

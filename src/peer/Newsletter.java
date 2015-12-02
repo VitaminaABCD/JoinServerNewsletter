@@ -32,22 +32,6 @@ public class Newsletter
         });
     }
     
-    /*synchronized void deposit(InetSocketAddress id_addr, double amount)
-    {
-        if (operationsMap.containsKey(id_addr))
-        {
-            double temp = operationsMap.get(id_addr);
-            operationsMap.put(id_addr, temp + amount);
-        }
-        else
-            operationsMap.put(id_addr, amount);        
-    }
-    
-    synchronized void withdraw(InetSocketAddress id_addr, double amount)
-    {
-        deposit(id_addr, -amount);
-    }
-    */
     synchronized String getNews()
     {
         String dato = null;
@@ -57,6 +41,21 @@ public class Newsletter
         
         return dato;
     }
-
+    
+        synchronized void write(InetSocketAddress id_addr, String dato)
+    {
+        if (operationsMap.containsKey(id_addr))
+        {
+            String temp = operationsMap.get(id_addr);
+            operationsMap.put(id_addr, temp + dato);
+        }
+        else
+            operationsMap.put(id_addr, dato);        
+    }
+    
+//    synchronized void withdraw(InetSocketAddress id_addr, String dato)
+//    {
+//        write(id_addr, dato);
+//    }
     
 }
