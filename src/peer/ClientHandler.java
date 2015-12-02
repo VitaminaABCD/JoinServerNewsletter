@@ -96,8 +96,8 @@ public class ClientHandler implements Runnable
     String dato = getDato();
     news.write(myInetSocketAddress, dato);
     String record = "[PEER: " + myInetSocketAddress +
-                         " scrive " + dato + 
-                    "TimeStamp:" +myTimeStamp+ "]";
+                         " scrive: " + dato + 
+                    "/nTimeStamp:" + myTimeStamp + "]";
         logger.log(Level.INFO, record);
     
     }
@@ -111,7 +111,7 @@ public class ClientHandler implements Runnable
             
     private void printNews()
     {
-        System.out.println("> NEWS DISPONIBILI : " + news.getNews()+"TimeStamp:"+myTimeStamp);
+        System.out.println("> NEWS DISPONIBILI:\b " + news.getNews() + "\nTimeStamp:"+myTimeStamp);
     }
 
     private void takeGlobalSnapshot()
