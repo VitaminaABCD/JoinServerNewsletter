@@ -9,9 +9,11 @@ import java.util.TreeMap;
  *
  * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
+
 public class Newsletter
 {
     private TreeMap<InetSocketAddress, String> operationsMap;
+    private TimeStamp myTimeStamp;
 
     public Newsletter()
     {
@@ -36,15 +38,17 @@ public class Newsletter
     {
         String dato = null;
         
-        for(Map.Entry<InetSocketAddress, String> e : operationsMap.entrySet())
+        for(Map.Entry<InetSocketAddress, String> e : operationsMap.entrySet()) 
             dato += e.getValue();
+            
+            //dato.equals(e.getValue());
         
         return dato;
     }
     
         synchronized void write(InetSocketAddress id_addr, String dato)
     {
-        if (operationsMap.containsKey(id_addr))
+        if (operationsMap.containsKey(id_addr)) //ritorna true se la mappa continene l'indirizzo
         {
             String temp = operationsMap.get(id_addr);
             operationsMap.put(id_addr, temp + dato);

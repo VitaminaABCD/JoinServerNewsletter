@@ -98,8 +98,8 @@ class ServerHandler implements Runnable
     {
         switch (m.getOperationType())
         {
-            case DEPOSIT:
-            case WITHDRAW:
+            //case READ:
+            case WRITE:
                 receiveOperationMessage(m);
                 break;
             default:
@@ -109,27 +109,27 @@ class ServerHandler implements Runnable
 
     private void receiveOperationMessage(OperationMessage m)
     {
-        //if (myTimeStamp(m.getSenderTimeStamp())
+        if (myTimeStamp.isHappenedBefore(m.getSenderTimeStamp()))
         {
             deliverOperationMessage(m);
             checkMessageBuffer();
         }
-        //else
+        else
             enqueueOperationMessage(m);
     }
 
     private void deliverOperationMessage(OperationMessage m)
     {
-        TimeStamp tmp_process = m.getSenderTimeStamp();
+        TimeStamp tmp = m.getSenderTimeStamp();
         myTimeStamp.updateTs();
         
         switch (m.getOperationType())
         {
-            case DEPOSIT:
-                //conto.deposit(m.getSender(), m.getBody());
-                break;
-            case WITHDRAW:
-                //conto.withdraw(m.getSender(), m.getBody());
+            /*case READ:
+                
+                break;*/
+            case WRITE:
+                
                 break;
             default:
                 System.err.println("FORMATO DELL'OPERAZIONE NON RICONOSCIUTO!");
@@ -160,7 +160,7 @@ class ServerHandler implements Runnable
         {
             for(OperationMessage om : messageBuffer)
             {
-                /*if (myTimeStamp.isCausalHappenedBefore(om.getSenderTimeStamp()))
+                if (myTimeStamp.isHappenedBefore(om.getSenderTimeStamp()))
                 {
                     deliverOperationMessage(om);
                     messageBuffer.remove(om);
@@ -168,7 +168,7 @@ class ServerHandler implements Runnable
                     break;
                 }
                 else
-                    end = true;*/
+                    end = true;
             }
         }
     }
