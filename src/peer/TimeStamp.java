@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede(PIPPO)
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
 
 public class TimeStamp implements Serializable, Comparable {
