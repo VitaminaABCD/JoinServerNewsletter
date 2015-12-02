@@ -45,7 +45,7 @@ public class Peer
     {
         this.myPort = myPort;
         this.news = new Newsletter();
-        this.myTimeStamp = new TimeStamp(N_PEER, myPort % 10);
+        this.myTimeStamp = new TimeStamp(N_PEER);
         this.messageBuffer = new ArrayList<>();
         this.stato = new State();
         
