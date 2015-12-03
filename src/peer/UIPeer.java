@@ -23,7 +23,6 @@ public class UIPeer
     /**
      * @param args the command line arguments
      */
-    
     public static void main(String[] args)
     {
         File file = new File("/Users/giuliagiuffrida/NetBeansProjects/PeerNewsletter/src/peer/port");

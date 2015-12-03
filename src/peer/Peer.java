@@ -37,7 +37,6 @@ public class Peer
     
     private State stato;
     private Logger logger;
-    private TreeMap<Marker, Recorder> markerMap;
 
     //Questo peer presuppone che la rete sia a regime per poter fare
     //operazioni sul news. (Tutte le newsletter non hanno scritto nulla quando 
@@ -56,7 +55,6 @@ public class Peer
         
         this.logger = initLog();
         
-        this.markerMap = new TreeMap<>();
     }
     
     private Logger initLog()
@@ -111,7 +109,6 @@ public class Peer
                                      myTimeStamp, 
                                      news,
                                      stato,
-                                     markerMap,
                                      logger)).start();
     }
 
@@ -131,7 +128,6 @@ public class Peer
                                                          news,
                                                          stato,
                                                          messageBuffer,
-                                                         markerMap,
                                                          logger);
                 executor.execute(worker);
             }

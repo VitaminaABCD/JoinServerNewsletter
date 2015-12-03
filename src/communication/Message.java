@@ -7,13 +7,13 @@ import java.net.InetSocketAddress;
  *
  * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
  */
-public abstract class Message<T> implements Serializable
+public abstract class Message<MSG> implements Serializable
 {
     private InetSocketAddress sender;
     private InetSocketAddress receiver;
-    private T body;
+    private MSG body;
 
-    public Message(InetSocketAddress sender, InetSocketAddress receiver, T body)
+    public Message(InetSocketAddress sender, InetSocketAddress receiver, MSG body)
     {
         this.sender = sender;
         this.receiver = receiver;
@@ -40,12 +40,12 @@ public abstract class Message<T> implements Serializable
         this.receiver = receiver;
     }
 
-    public T getBody()
+    public MSG getBody()
     {
         return body;
     }
 
-    public void setBody(T body)
+    public void setBody(MSG body)
     {
         this.body = body;
     }

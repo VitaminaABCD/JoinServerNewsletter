@@ -1,7 +1,6 @@
 package peer;
 
 import communication.Forwarder;
-import communication.GlobalSnapshotMessage;
 import communication.Message;
 import communication.OperationMessage;
 import java.net.InetSocketAddress;
@@ -23,8 +22,6 @@ public class ClientHandler implements Runnable
     private Newsletter news; 
     private InetSocketAddress myInetSocketAddress;
     private State stato;
-    private int globalSnapshotCounter;
-    final private TreeMap<Marker, Recorder> markerMap;
     private Logger logger;
 
     public ClientHandler(InetSocketAddress myInetSocketAddress, 
@@ -32,7 +29,6 @@ public class ClientHandler implements Runnable
                          TimeStamp myTimeStamp, 
                          Newsletter news,
                          State stato,
-                         TreeMap<Marker, Recorder> markMap,
                          Logger logger)
     {
         this.myInetSocketAddress = myInetSocketAddress;
@@ -40,8 +36,6 @@ public class ClientHandler implements Runnable
         this.myTimeStamp = myTimeStamp;
         this.news = news;
         this.stato = stato;
-        this.globalSnapshotCounter = 0;
-        this.markerMap = markMap;
         this.logger = logger;
     }
     
@@ -64,7 +58,7 @@ public class ClientHandler implements Runnable
                     writeNews();
                     break;
                 case 3:
-                    takeGlobalSnapshot();
+                    //takeGlobalSnapshot();
                     break;
                 case 4:
                     printLog();
@@ -119,24 +113,6 @@ public class ClientHandler implements Runnable
 
     }
 
-    private void takeGlobalSnapshot()
-    {
-        State frozenState = stato.getCopy();
-        LocalSnapshot mySnapshot = new LocalSnapshot(myInetSocketAddress, frozenState);
-        GlobalSnapshot globalSnapshot = new GlobalSnapshot(myInetSocketAddress);
-        globalSnapshot.addSnapshot(mySnapshot);
-        
-        Recorder recorder = new Recorder(globalSnapshot);
-        Marker marker = new Marker(myInetSocketAddress, globalSnapshotCounter++);
-        
-        synchronized(markerMap)
-        {
-            markerMap.put(marker, recorder);
-        }
-        
-        floodMarker(marker);
-        
-    }
 
     private void printLog()
     {
@@ -150,16 +126,5 @@ public class ClientHandler implements Runnable
             System.out.println("Indirizzo: " + isa.getAddress() + " - Porta: " + isa.getPort());
         System.out.println("}");
     }
-    
-    private void floodMarker(Marker marker)
-    {
-        for (InetSocketAddress isa : myNeighbours)
-        {
-            GlobalSnapshotMessage gsm = new GlobalSnapshotMessage(myInetSocketAddress, 
-                                                                  isa, 
-                                                                  marker, 
-                                                                  null);
-            Forwarder.sendMessage(gsm);
-        }
-    }
+
 }

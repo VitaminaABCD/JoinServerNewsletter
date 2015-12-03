@@ -67,7 +67,7 @@ public class TimeStamp implements Serializable, Comparable {
     synchronized boolean isHappenedBefore(TimeStamp ts) 
     {
         return false;
-        //if(this.ts)
+
     }
     
     
