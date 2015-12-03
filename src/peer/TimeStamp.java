@@ -16,32 +16,32 @@ public class TimeStamp implements Serializable, Comparable {
 
     private static final long serialVersionUID = 1L;
 
-    private int ts;
+    private int tl;
     private int N_PEER; //PID
 
 
     public TimeStamp(int N_PEER) {
 
         this.N_PEER = N_PEER;//PID
-        this.ts = 0;
+        this.tl = 0;
 
     }
 
-    public synchronized int getTs() {
-        return this.ts;
+    public synchronized int getTl() {
+        return tl;
     }
     
         public synchronized int getPID() {
         return N_PEER;
     }
 
-    public synchronized void updateTs() {
-        ts++;
+    public synchronized void updateTl() {
+        tl++;
     }
     
     public synchronized String printTs(){
     
-    return("TimeStamp: " +getTs()+
+    return("TimeStamp: " +getTl()+
                             "\nPID: "+getPID());
     
     }
@@ -56,7 +56,7 @@ public class TimeStamp implements Serializable, Comparable {
 //non torna mai zero perchè abbiamo deciso di fare un confronto usando anche il pid
         
         TimeStamp ts = (TimeStamp) o;
-        int diff = this.ts - ts.ts;
+        int diff = this.tl - ts.tl;
         if (diff == 0) {
             return this.N_PEER - ts.N_PEER;
         }

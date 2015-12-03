@@ -121,7 +121,7 @@ class ServerHandler implements Runnable
     private void deliverOperationMessage(OperationMessage m)
     {
         TimeStamp tmp = m.getSenderTimeStamp();
-        myTimeStamp.updateTs();
+        myTimeStamp.updateTl();
         
         switch (m.getOperationType())
         {
