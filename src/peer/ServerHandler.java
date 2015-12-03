@@ -62,8 +62,8 @@ class ServerHandler implements Runnable
     @Override
     public void run()
     {
-        //Lasciare solo l'input stream
-        //Outputstream fa saltare tutti in aria
+       
+        
         try (ObjectInputStream in = new ObjectInputStream(incomingSocket.getInputStream()))
         {
             Message m = (Message) in.readObject();
@@ -125,9 +125,6 @@ class ServerHandler implements Runnable
         
         switch (m.getOperationType())
         {
-            /*case READ:
-                
-                break;*/
             case WRITE:
                 
                 break;
@@ -137,7 +134,7 @@ class ServerHandler implements Runnable
         
         String record = getRecordForMessage(m);
         
-        //Controlla se sta registrando ancora messaggi da questo canale
+        
         for(Map.Entry<Marker, Recorder> entry: markerMap.entrySet())
         {
             Recorder r = entry.getValue();

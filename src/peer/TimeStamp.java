@@ -71,17 +71,5 @@ public class TimeStamp implements Serializable, Comparable {
     }
     
     
-    /*synchronized public boolean isCausalHappenedBefore(TimeStamp ts)
-    {
-        if (this.ts != ts.getTs()-1)
-            return false;
-        else
-            while (true)
-                if((ts != null) && 
-                   (this.ts < ts.getTs()))
-                    return false;
-        
-        //return true;
-    }*/
     
 }

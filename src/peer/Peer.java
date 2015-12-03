@@ -18,11 +18,12 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede
+ * @author Ylenia Trapani, Giulia Giuffrida, Manuela Ramona Fede piiiii tu scudda!!
  */
+
 public class Peer
 {
-    //Magic Numbers
+   
     private static final int nThread = 100;
     private static final int N_PEER = 6;
     
@@ -39,8 +40,10 @@ public class Peer
     private TreeMap<Marker, Recorder> markerMap;
 
     //Questo peer presuppone che la rete sia a regime per poter fare
-    //operazioni sul conto. (Tutti i conti non hanno saldo quando vengono creati
-    //i peer).
+    //operazioni sul news. (Tutte le newsletter non hanno scritto nulla quando 
+    //vengono creati i peer).
+    
+    
     public Peer(int myPort)
     {
         this.myPort = myPort;
@@ -63,7 +66,7 @@ public class Peer
         StateHandler sh = new StateHandler(this.stato);
         try
         {
-            FileHandler fh = new FileHandler("./src/peer1hw/log" + (myPort % 10));
+            FileHandler fh = new FileHandler("/Users/giuliagiuffrida/NetBeansProjects/PeerNewsletter/src/peer/log" + (myPort % 10));
             l.addHandler(fh);
         }
         catch (IOException | SecurityException ex)
@@ -72,7 +75,7 @@ public class Peer
         }
         
         l.addHandler(sh);
-        l.setUseParentHandlers(false); // non logga nello stream System.out
+        l.setUseParentHandlers(false); 
         
         return l;
     }

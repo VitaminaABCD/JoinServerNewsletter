@@ -38,7 +38,8 @@ public class Newsletter
     {
         String dato = null;
         
-        for(Map.Entry<InetSocketAddress, String> e : operationsMap.entrySet()) 
+        for(Map.Entry<InetSocketAddress, String> e : operationsMap.entrySet())
+            
             dato += e.getValue();
             
             //dato.equals(e.getValue());
@@ -56,10 +57,5 @@ public class Newsletter
         else
             operationsMap.put(id_addr, dato);        
     }
-    
-//    synchronized void withdraw(InetSocketAddress id_addr, String dato)
-//    {
-//        write(id_addr, dato);
-//    }
     
 }
